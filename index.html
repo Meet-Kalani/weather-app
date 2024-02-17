@@ -20,17 +20,17 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
-<body>
+<body class="flex">
     <main class="main-container">
         <div class="user-input-container">
-            <div>
-                <input type="text" class="user-input" placeholder="i.e. Reykjavik" spellcheck="false">
-                <span class="warning-location">*location field can't be empty</span>
+            <div class="flex">
+                <input type="text" class="user-input" placeholder="i.e. Reykjavik" sellcheck="false">
+                <button type="button" class="view-btn">View</button>
             </div>
-            <button type="button" class="view-btn">View</button>
+            <span class="warning-location">*location field can't be empty</span>
         </div>
         <div class="weather-data-container">
-            <div class="weather-info">
+            <div class="weather-info flex">
                 <img src="" class="icon">
                 <span class="weather-type"></span>
                 <div class="location-container">
