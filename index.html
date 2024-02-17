@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- custom stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+    <main class="main-container">
+        <div class="user-input-container">
+            <div>
+                <input type="text" class="user-input" placeholder="i.e. Reykjavik" spellcheck="false">
+                <span class="warning-location">*location field can't be empty</span>
+            </div>
+            <button type="button" class="view-btn">View</button>
+        </div>
+        <div class="weather-data-container">
+            <div class="weather-info">
+                <img src="" class="icon">
+                <span class="weather-type"></span>
+                <div class="location-container">
+                    <span class="location"></span>
+                    <span class="state"></span>
+                    <span class="country"></span>
+                </div>
+            </div>
+            <div class="flex primary-info">
+                <span class="temperature-celsius"></span>
+                <span class="temperature-fahrenheit"></span>
+            </div>
+            <div class="flex secondary-info">
+                <div>
+                    <span class="temperature-feel"></span>
+                    <span class="wind"></span>
+                    <span class="humidity"></span>
+                </div>
+                <span class="time"></span>
+            </div>
+        </div>
+    </main>
+    <!-- custom javascript -->
+    <script src="assets/javascript/script.js"></script>
+</body>
+
+</html>

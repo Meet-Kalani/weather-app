@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*NOTE do flex class for all flexs  */
+
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+
+input,button{
+    font-family: "Poppins", sans-serif;
+}
+
+.flex{
+    display: flex;
+}
+
+.main-container{
+    width: min(90%,450px);
+    min-height: 407px;
+    background-color: #333;
+    border-radius: 22px;
+    padding: 28px;
+    font-weight: 200;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+.main-container .user-input-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.main-container .user-input-container .user-input{
+    padding: 8px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 22px;
+}
+
+.main-container .user-input-container .warning-location{
+    color: red;
+    padding-left: 16px;
+    visibility: hidden;
+}
+
+.main-container .user-input-container .view-btn{
+    border: none;
+    padding: 8px 28px;
+    cursor: pointer;
+    background-color: #F2DD6E;
+    border-radius: 22px;
+    height: fit-content;
+    transition: 200ms;
+}
+
+.main-container .user-input-container .view-btn:hover{
+    background-color: #d5874f;
+}
+
+.main-container .weather-data-container{
+    color: #fff;
+    margin-top: 16px;
+}
+
+.main-container .weather-data-container span{
+    display: block;
+}
+
+.weather-data-container .location-container span{
+    display: inline-block;
+    text-align: center;
+}
+
+.weather-data-container .location-container .location{
+    display: block;
+}
+
+.weather-data-container .temperature-celsius,
+.weather-data-container .temperature-fahrenheit{
+    font-size: 30px;
+}
+
+.weather-data-container .weather-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.weather-data-container .weather-info .weather-type{
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.secondary-info .temperature-feel,
+.secondary-info .wind,
+.secondary-info .humidity{
+    font-size: 14px;
+}
+
+.weather-data-container .secondary-info{
+    justify-content: space-between;
+    align-items: center;
+}
+
+.secondary-info .time{
+    font-size: 24px;
+}
