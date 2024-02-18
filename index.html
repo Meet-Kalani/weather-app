@@ -21,35 +21,37 @@
 </head>
 
 <body class="flex">
-    <main class="main-container">
-        <div class="user-input-container">
+    <main class="weather-app">
+        <div class="input-container">
             <div class="flex">
-                <input type="text" class="user-input" placeholder="i.e. Reykjavik" sellcheck="false">
+                <input type="text" class="location-input" placeholder="i.e. Reykjavik" sellcheck="false">
                 <button type="button" class="view-btn">View</button>
             </div>
-            <span class="warning-location">*location field can't be empty</span>
+            <span class="location-warning">*location field can't be empty</span>
         </div>
-        <div class="weather-data-container">
+        <div class="weather-info-container">
             <div class="weather-info flex">
-                <img src="" class="icon">
-                <span class="weather-type"></span>
+                <img src="" class="weather-icon">
+                <span class="weather-description"></span>
                 <div class="location-container">
-                    <span class="location"></span>
-                    <span class="state"></span>
-                    <span class="country"></span>
+                    <span class="location-name"></span>
+                    <span class="location-state"></span>
+                    <span class="location-country"></span>
                 </div>
             </div>
-            <div class="flex primary-info">
-                <span class="temperature-celsius"></span>
-                <span class="temperature-fahrenheit"></span>
-            </div>
-            <div class="flex secondary-info">
-                <div>
-                    <span class="temperature-feel"></span>
-                    <span class="wind"></span>
-                    <span class="humidity"></span>
+            <div class="temperature-info">
+                <div class="flex temperature-main">
+                    <span class="temperature-celsius"></span>
+                    <span class="temperature-fahrenheit"></span>
                 </div>
-                <span class="time"></span>
+                <div class="flex temperature-secondary">
+                    <div>
+                        <span class="temperature-feel"></span>
+                        <span class="wind-speed"></span>
+                        <span class="humidity-level"></span>
+                    </div>
+                    <span class="current-time"></span>
+                </div>
             </div>
         </div>
     </main>

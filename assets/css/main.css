@@ -25,7 +25,7 @@ input,button{
     display: flex;
 }
 
-.main-container{
+.weather-app{
     width: min(90%,450px);
     min-height: 407px;
     background-color: #333;
@@ -36,11 +36,11 @@ input,button{
     border: 3px solid rgba(255, 255, 255, 0.9);
 }
 
-.main-container .user-input-container .flex{
+.weather-app .input-container .flex{
     gap: 8px;
 }
 
-.main-container .user-input-container .user-input{
+.weather-app .input-container .location-input{
     padding: 8px 16px;
     width: 100%;
     border: none;
@@ -48,13 +48,13 @@ input,button{
     border-radius: 22px;
 }
 
-.main-container .user-input-container .warning-location{
+.weather-app .input-container .location-warning{
     color: red;
     padding-left: 16px;
     visibility: hidden;
 }
 
-.main-container .user-input-container .view-btn{
+.weather-app .input-container .view-btn{
     border: none;
     padding: 8px 16px;
     cursor: pointer;
@@ -64,55 +64,55 @@ input,button{
     transition: 200ms;
 }
 
-.main-container .user-input-container .view-btn:hover{
+.weather-app .input-container .view-btn:hover{
     background-color: #d5874f;
 }
 
-.main-container .weather-data-container{
+.weather-app .weather-info-container{
     color: #fff;
     margin-top: 16px;
 }
 
-.main-container .weather-data-container span{
+.weather-app .weather-info-container span{
     display: block;
 }
 
-.weather-data-container .location-container span{
+.weather-info-container .location-container span{
     display: inline-block;
     text-align: center;
 }
 
-.weather-data-container .location-container .location{
+.weather-info-container .location-container .location-name{
     display: block;
 }
 
-.weather-data-container .temperature-celsius,
-.weather-data-container .temperature-fahrenheit{
+.weather-info-container .temperature-celsius,
+.weather-info-container .temperature-fahrenheit{
     font-size: 30px;
 }
 
-.weather-data-container .weather-info{
+.weather-info-container .weather-info{
     flex-direction: column;
     align-items: center;
     margin-bottom: 16px;
 }
 
-.weather-data-container .weather-info .weather-type{
+.weather-info-container .weather-info .weather-description{
     font-size: 30px;
     font-weight: 400;
 }
 
-.secondary-info .temperature-feel,
-.secondary-info .wind,
-.secondary-info .humidity{
+.temperature-secondary .temperature-feel,
+.temperature-secondary .wind-speed,
+.temperature-secondary .humidity-level{
     font-size: 14px;
 }
 
-.weather-data-container .secondary-info{
+.weather-info-container .temperature-secondary{
     justify-content: space-between;
     align-items: center;
 }
 
-.secondary-info .time{
+.temperature-secondary .current-time{
     font-size: 24px;
 }
