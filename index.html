@@ -7,7 +7,7 @@
     <title>Weather app</title>
 
     <!-- favicon -->
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="assets/media/favicon.ico">
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,17 +20,23 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
-<body class="flex">
-    <main class="weather-app">
+<body>
+    <!-- Main content container for the weather app -->
+    <main id="weather-app">
+        <!-- Preloader -->
+        <div class="preloader"><img src="assets/media/loader.gif" alt="preloader"></div>
+        <!-- Container for user input -->
         <div class="input-container">
-            <div class="flex">
-                <input type="text" class="location-input" placeholder="i.e. Reykjavik" sellcheck="false">
+            <div class="input-wrapper">
+                <input type="text" class="location-input" name="location" placeholder="i.e. Reykjavik" sellcheck="false">
                 <button type="button" class="view-btn">View</button>
             </div>
+            <!-- Warning message for empty location field -->
             <span class="location-warning">*location field can't be empty</span>
         </div>
+        <!-- Container for displaying weather information -->
         <div class="weather-info-container">
-            <div class="weather-info flex">
+            <div class="weather-info">
                 <img src="" class="weather-icon">
                 <span class="weather-description"></span>
                 <div class="location-container">
@@ -40,23 +46,26 @@
                 </div>
             </div>
             <div class="temperature-info">
-                <div class="flex temperature-main">
+                <!-- Main temperature display -->
+                <div class="temperature-main">
                     <span class="temperature-celsius"></span>
                     <span class="temperature-fahrenheit"></span>
                 </div>
-                <div class="flex temperature-secondary">
+                <!-- Secondary temperature information -->
+                <div class="temperature-secondary">
                     <div>
                         <span class="temperature-feel"></span>
                         <span class="wind-speed"></span>
                         <span class="humidity-level"></span>
                     </div>
+                    <!-- Current time information -->
                     <span class="current-time"></span>
                 </div>
             </div>
         </div>
     </main>
     <!-- custom javascript -->
-    <script src="assets/javascript/script.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

@@ -1,32 +1,27 @@
-*{
+/* Reset default margin, padding, and box-sizing */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*NOTE do flex class for all flexs  */
-
-html{
-    height: 100%;
+/* Default styling for elements */
+input,
+button {
+    font-family: "Poppins", sans-serif;
 }
 
-body{
-    height: 100%;
+/* Main styling */
+body {
+    height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
     font-family: "Poppins", sans-serif;
 }
 
-input,button{
-    font-family: "Poppins", sans-serif;
-}
-
-.flex{
-    display: flex;
-}
-
-.weather-app{
-    width: min(90%,450px);
+#weather-app {
+    width: min(90%, 450px);
     min-height: 407px;
     background-color: #333;
     border-radius: 22px;
@@ -34,13 +29,35 @@ input,button{
     font-weight: 200;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     border: 3px solid rgba(255, 255, 255, 0.9);
+    position: relative;
 }
 
-.weather-app .input-container .flex{
+.preloader{
+    position: absolute;
+    background-color: #333;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-container .input-wrapper {
+    width: 100%;
+    display: flex;
     gap: 8px;
 }
 
-.weather-app .input-container .location-input{
+.input-container .location-input {
     padding: 8px 16px;
     width: 100%;
     border: none;
@@ -48,13 +65,14 @@ input,button{
     border-radius: 22px;
 }
 
-.weather-app .input-container .location-warning{
+.input-container .location-warning {
     color: red;
+    width: 100%;
     padding-left: 16px;
     visibility: hidden;
 }
 
-.weather-app .input-container .view-btn{
+.input-container .view-btn {
     border: none;
     padding: 8px 16px;
     cursor: pointer;
@@ -64,55 +82,60 @@ input,button{
     transition: 200ms;
 }
 
-.weather-app .input-container .view-btn:hover{
+.input-container .view-btn:hover {
     background-color: #d5874f;
 }
 
-.weather-app .weather-info-container{
+.weather-info-container {
     color: #fff;
     margin-top: 16px;
 }
 
-.weather-app .weather-info-container span{
-    display: block;
-}
-
-.weather-info-container .location-container span{
-    display: inline-block;
+.weather-info-container .location-container{
     text-align: center;
 }
 
-.weather-info-container .location-container .location-name{
+.weather-info-container .location-container span {
+    display: inline-block;  
+}
+
+.weather-info-container span {
     display: block;
 }
 
 .weather-info-container .temperature-celsius,
-.weather-info-container .temperature-fahrenheit{
+.weather-info-container .temperature-fahrenheit {
     font-size: 30px;
 }
 
-.weather-info-container .weather-info{
+.weather-info-container .weather-info {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 36px;
 }
 
-.weather-info-container .weather-info .weather-description{
+.weather-info-container .weather-info .weather-description {
     font-size: 30px;
     font-weight: 400;
 }
 
 .temperature-secondary .temperature-feel,
 .temperature-secondary .wind-speed,
-.temperature-secondary .humidity-level{
+.temperature-secondary .humidity-level {
     font-size: 14px;
 }
 
-.weather-info-container .temperature-secondary{
+.weather-info-container .temperature-main{
+    display: flex;
+}
+
+.weather-info-container .temperature-secondary {
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.temperature-secondary .current-time{
+.temperature-secondary .current-time {
     font-size: 24px;
 }
