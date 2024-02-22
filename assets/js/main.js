@@ -37,16 +37,25 @@ document.addEventListener('DOMContentLoaded', () => {
     getData('ahmedabad');
 });
 
+userInput.addEventListener('keypress', (event) => {
+    const pressedKey = event.key;
+
+    if (pressedKey === 'Enter') {
+        const userInputData = userInput.value.trim();
+        getData(userInputData);
+    }
+})
+
 // Function to fetch data
 function getData(location) {
-    const userInputData = location.trim();
-    updateWarningVisibility(!userInputData);
-
-    if (!userInputData) return;
+    if (!location){    
+        updateWarningVisibility(!location);
+        return;
+    }
 
     // Create XMLHttpRequest object
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://api.weatherapi.com/v1/current.json?key=cf8f0b2edfe540168fe84553241602&q=${userInputData}`);
+    xhr.open('GET', `https://api.weatherapi.com/v1/current.json?key=cf8f0b2edfe540168fe84553241602&q=${location}`);
     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr.responseType = 'json';
 
@@ -100,6 +109,9 @@ function updateUI(data) {
     const timeString = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
 
     weatherInfoElements.time.textContent = timeString;
+
+    // Empty user input field after fetching data
+    userInput.value = '';
 }
 
 // Function to handle errors in the response
