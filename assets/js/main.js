@@ -1,5 +1,5 @@
 // DOM elements - static
-const genericElements = {
+const utilityElements = {
   userInput: document.querySelector(".location-input"),
   viewBtn: document.querySelector(".view-btn"),
   locationWarning: document.querySelector(".location-warning"),
@@ -36,8 +36,8 @@ const weatherInfoElements = {
 };
 
 // Event listeners
-genericElements.viewBtn.addEventListener("click", () => {
-  const userInputData = genericElements.userInput.value.trim();
+utilityElements.viewBtn.addEventListener("click", () => {
+  const userInputData = utilityElements.userInput.value.trim();
   getData(userInputData);
 });
 
@@ -45,18 +45,18 @@ document.addEventListener("DOMContentLoaded", () => {
   getData("ahmedabad");
 });
 
-genericElements.userInput.addEventListener("keypress", (event) => {
+utilityElements.userInput.addEventListener("keypress", (event) => {
   const pressedKey = event.key;
 
   if (pressedKey === "Enter") {
-    const userInputData = genericElements.userInput.value.trim();
+    const userInputData = utilityElements.userInput.value.trim();
     getData(userInputData);
   }
 });
 
-genericElements.closeBtn.addEventListener("click", () => {
-  genericElements.backdrop.classList.add("d-none");
-  genericElements.errorMsgContainer.classList.add("d-none");
+utilityElements.closeBtn.addEventListener("click", () => {
+  utilityElements.backdrop.classList.add("d-none");
+  utilityElements.errorMsgContainer.classList.add("d-none");
 });
 
 // Function to fetch data
@@ -84,7 +84,7 @@ async function getData(location) {
   } catch (error) {
     handleErrorResponse(error);
   } finally {
-    genericElements.preloader.style.display = "none";
+    utilityElements.preloader.style.display = "none";
   }
 }
 
@@ -129,16 +129,16 @@ function updateUI(data) {
   weatherInfoElements.time.textContent = timeString;
 
   // Empty user input field after fetching data
-  genericElements.userInput.value = "";
+  utilityElements.userInput.value = "";
 }
 
 // Function to handle errors in the response
 function handleErrorResponse(data) {
   // Handle specific error scenarios
-  const displayError = genericElements.errorMsgContainer.children[0];
-  genericElements.backdrop.classList.remove("d-none");
-  genericElements.errorMsgContainer.classList.remove("d-none");
-  genericElements.userInput.value = "";
+  const displayError = utilityElements.errorMsgContainer.children[0];
+  utilityElements.backdrop.classList.remove("d-none");
+  utilityElements.errorMsgContainer.classList.remove("d-none");
+  utilityElements.userInput.value = "";
 
   if (data.status === 400) {
     displayError.textContent =
@@ -153,7 +153,7 @@ function handleErrorResponse(data) {
 
 // Function to update the visibility of the warning element
 function toggleWarning(showWarning) {
-  genericElements.locationWarning.style.visibility = showWarning
+  utilityElements.locationWarning.style.visibility = showWarning
     ? "visible"
     : "hidden";
 }
