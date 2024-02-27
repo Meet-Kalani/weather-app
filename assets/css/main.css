@@ -1,141 +1,197 @@
 /* Reset default margin, padding, and box-sizing */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Default styling for elements */
 input,
 button {
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Main styling */
 body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  position: relative;
 }
 
 #weather-app {
-    width: min(90%, 450px);
-    min-height: 407px;
-    background-color: #333;
-    border-radius: 22px;
-    padding: 28px;
-    font-weight: 200;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-    border: 3px solid rgba(255, 255, 255, 0.9);
-    position: relative;
+  width: min(90%, 450px);
+  min-height: 407px;
+  background-color: #333;
+  border-radius: 22px;
+  padding: 28px;
+  font-weight: 200;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  position: relative;
 }
 
-.preloader{
-    position: absolute;
-    background-color: #333;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border-radius: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.preloader {
+  position: absolute;
+  background-color: #333;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .input-container .input-wrapper {
-    width: 100%;
-    display: flex;
-    gap: 8px;
+  width: 100%;
+  display: flex;
+  gap: 8px;
 }
 
 .input-container .location-input {
-    padding: 8px 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-    border-radius: 22px;
+  padding: 8px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 22px;
 }
 
 .input-container .location-warning {
-    color: red;
-    width: 100%;
-    padding-left: 16px;
-    visibility: hidden;
+  color: red;
+  width: 100%;
+  padding-left: 16px;
+  visibility: hidden;
 }
 
 .input-container .view-btn {
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    background-color: #F2DD6E;
-    border-radius: 22px;
-    height: fit-content;
-    transition: 200ms;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #f2dd6e;
+  border-radius: 22px;
+  height: fit-content;
+  transition: 200ms;
 }
 
 .input-container .view-btn:hover {
-    background-color: #d5874f;
+  background-color: #d5874f;
 }
 
 .weather-info-container {
-    color: #fff;
-    margin-top: 16px;
+  color: #fff;
+  margin-top: 16px;
 }
 
-.weather-info-container .location-container{
-    text-align: center;
+.weather-info-container .location-container {
+  text-align: center;
 }
 
 .weather-info-container .location-container span {
-    display: inline-block;  
+  display: inline-block;
 }
 
 .weather-info-container span {
-    display: block;
+  display: block;
 }
 
 .weather-info-container .temperature-celsius,
 .weather-info-container .temperature-fahrenheit {
-    font-size: 30px;
+  font-size: 30px;
+  display: inline-block;
 }
 
 .weather-info-container .weather-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 36px;
 }
 
 .weather-info-container .weather-info .weather-description {
-    font-size: 30px;
-    font-weight: 400;
+  font-size: 30px;
+  font-weight: 400;
 }
 
 .temperature-secondary .temperature-feel,
 .temperature-secondary .wind-speed,
-.temperature-secondary .humidity-level {
-    font-size: 14px;
+.temperature-secondary .humidity-level,
+.temperature-secondary .pressure,
+.temperature-secondary .uv,
+.temperature-secondary .wind-direction {
+  font-size: 14px;
 }
 
-.weather-info-container .temperature-main{
-    display: flex;
+.weather-info-container .temperature-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .weather-info-container .temperature-secondary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.temperature-secondary .current-time {
-    font-size: 24px;
+.temperature-main .current-time {
+  font-size: 24px;
+}
+
+.temperature-secondary .pressure,
+.temperature-secondary .uv,
+.temperature-secondary .humidity-level {
+  text-align: right;
+}
+
+.error-msg-container {
+  min-width: 280px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: #fefefe;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.error-msg-container .close-btn {
+  border: none;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 25px;
+  cursor: pointer;
+}
+
+/* Dynamic classes */
+.d-none {
+  display: none;
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: 1;
 }

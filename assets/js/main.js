@@ -1,132 +1,159 @@
-// DOM elements
-const userInput = document.querySelector('.location-input');
-const viewBtn = document.querySelector('.view-btn');
-const warningElement = document.querySelector('.location-warning');
-const preloader = document.querySelector('.preloader');
+// DOM elements - static
+const genericElements = {
+  userInput: document.querySelector(".location-input"),
+  viewBtn: document.querySelector(".view-btn"),
+  locationWarning: document.querySelector(".location-warning"),
+  preloader: document.querySelector(".preloader"),
+  errorMsgContainer: document.querySelector(".error-msg-container"),
+  closeBtn: document.querySelector(".close-btn"),
+  backdrop: document.querySelector(".backdrop"),
+};
 
-// UI-related elements
+// DOM elements - Dynamic
 const locationElements = {
-    name: document.querySelector('.location-name'),
-    state: document.querySelector('.location-state'),
-    country: document.querySelector('.location-country')
+  name: document.querySelector(".location-name"),
+  state: document.querySelector(".location-state"),
+  country: document.querySelector(".location-country"),
 };
 
 const temperatureElements = {
-    celsius: document.querySelector('.temperature-celsius'),
-    fahrenheit: document.querySelector('.temperature-fahrenheit'),
-    feel: document.querySelector('.temperature-feel')
+  celsius: document.querySelector(".temperature-celsius"),
+  fahrenheit: document.querySelector(".temperature-fahrenheit"),
+  feel: document.querySelector(".temperature-feel"),
 };
 
 const weatherInfoElements = {
-    icon: document.querySelector('.weather-icon'),
-    description: document.querySelector('.weather-description'),
-    time: document.querySelector('.current-time'),
-    secondary: {
-        wind: document.querySelector('.wind-speed'),
-        humidity: document.querySelector('.humidity-level')
-    }
+  icon: document.querySelector(".weather-icon"),
+  description: document.querySelector(".weather-description"),
+  time: document.querySelector(".current-time"),
+  secondary: {
+    wind: document.querySelector(".wind-speed"),
+    humidity: document.querySelector(".humidity-level"),
+  },
+  windDirection: document.querySelector(".wind-direction"),
+  uv: document.querySelector(".uv"),
+  pressure: document.querySelector(".pressure"),
 };
 
 // Event listeners
-viewBtn.addEventListener('click', () => {
-    const userInputData = userInput.value.trim();
+genericElements.viewBtn.addEventListener("click", () => {
+  const userInputData = genericElements.userInput.value.trim();
+  getData(userInputData);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  getData("ahmedabad");
+});
+
+genericElements.userInput.addEventListener("keypress", (event) => {
+  const pressedKey = event.key;
+
+  if (pressedKey === "Enter") {
+    const userInputData = genericElements.userInput.value.trim();
     getData(userInputData);
+  }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    getData('ahmedabad');
+genericElements.closeBtn.addEventListener("click", () => {
+  genericElements.backdrop.classList.add("d-none");
+  genericElements.errorMsgContainer.classList.add("d-none");
 });
-
-userInput.addEventListener('keypress', (event) => {
-    const pressedKey = event.key;
-
-    if (pressedKey === 'Enter') {
-        const userInputData = userInput.value.trim();
-        getData(userInputData);
-    }
-})
 
 // Function to fetch data
-function getData(location) {
-    if (!location){    
-        updateWarningVisibility(!location);
-        return;
+async function getData(location) {
+  if (!location) {
+    toggleWarning(true);
+    return;
+  }
+  toggleWarning(false);
+
+  try {
+    const response = await fetch(
+      `https://api.weatherapi.com/v1/current.json?key=cf8f0b2edfe540168fe84553241602&q=${location}`
+    );
+
+    if (!response.ok) {
+      handleErrorResponse(response);
     }
 
-    // Create XMLHttpRequest object
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://api.weatherapi.com/v1/current.json?key=cf8f0b2edfe540168fe84553241602&q=${location}`);
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-    xhr.responseType = 'json';
+    const data = await response.json();
 
-    // Event handler when the request is completed
-    xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-            updateUI(xhr.response);
-        } else {
-            handleErrorResponse(xhr.response);
-        }
-        preloader.style.display = 'none';
-    };
-
-    // Event handler for errors
-    xhr.onerror = function (err) {
-        console.error(err);
-        alert('Oops! Something unexpected happened. Please try again later or contact support for assistance.');
-        preloader.style.display = 'none';
-    };
-
-    // Send the request
-    xhr.send();
+    if (data.location) {
+      updateUI(data);
+    }
+  } catch (error) {
+    handleErrorResponse(error);
+  } finally {
+    genericElements.preloader.style.display = "none";
+  }
 }
 
 // Function to update UI with fetched data
 function updateUI(data) {
-    const {
-        current: {
-            condition: { icon, text },
-            temp_c,
-            temp_f,
-            feelslike_c,
-            wind_kph,
-            humidity
-        },
-        location: { name, region, country, localtime }
-    } = data;
+  const {
+    current: {
+      condition: { icon, text },
+      temp_c,
+      temp_f,
+      feelslike_c,
+      wind_kph,
+      humidity,
+      pressure_mb,
+      uv,
+      wind_dir,
+    },
+    location: { name, region, country, localtime },
+  } = data;
 
-    weatherInfoElements.icon.src = icon;
-    weatherInfoElements.description.textContent = text;
-    locationElements.name.textContent = name;
-    locationElements.state.textContent = `${region},`;
-    locationElements.country.textContent = country;
-    temperatureElements.celsius.textContent = `${temp_c}°C/`;
-    temperatureElements.fahrenheit.textContent = `${temp_f}°F`;
-    temperatureElements.feel.textContent = `Feels Like: ${feelslike_c}°C`;
-    weatherInfoElements.secondary.wind.textContent = `Wind: ${wind_kph} KMPH`;
-    weatherInfoElements.secondary.humidity.textContent = `Humidity: ${humidity}`;
+  weatherInfoElements.icon.src = icon;
+  weatherInfoElements.description.textContent = text;
+  locationElements.name.textContent = name;
+  locationElements.state.textContent = `${region},`;
+  locationElements.country.textContent = country;
+  temperatureElements.celsius.textContent = `${temp_c}°C/`;
+  temperatureElements.fahrenheit.textContent = `${temp_f}°F`;
+  temperatureElements.feel.textContent = `Feels Like: ${feelslike_c}°C`;
+  weatherInfoElements.secondary.wind.textContent = `Wind: ${wind_kph} KMPH`;
+  weatherInfoElements.secondary.humidity.textContent = `Humidity: ${humidity}`;
+  weatherInfoElements.pressure.textContent = `Pressure: ${pressure_mb}mb`;
+  weatherInfoElements.uv.textContent = `UV index: ${uv}`;
+  weatherInfoElements.windDirection.textContent = `Wind Direction: ${wind_dir}`;
 
-    const dateObject = new Date(localtime);
-    const timeString = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+  const dateObject = new Date(localtime);
+  const timeString = dateObject.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
 
-    weatherInfoElements.time.textContent = timeString;
+  weatherInfoElements.time.textContent = timeString;
 
-    // Empty user input field after fetching data
-    userInput.value = '';
+  // Empty user input field after fetching data
+  genericElements.userInput.value = "";
 }
 
 // Function to handle errors in the response
 function handleErrorResponse(data) {
-    // Handle specific error scenarios
-    if (data.error && data.error.code === 1006) {
-        userInput.value = '';
-        alert('The location you entered could not be found. Please try again.');
-    } else {
-        console.error(data);
-        alert('Oops! Something unexpected happened. Please try again later or contact support for assistance.');
-    }
+  // Handle specific error scenarios
+  const displayError = genericElements.errorMsgContainer.children[0];
+  genericElements.backdrop.classList.remove("d-none");
+  genericElements.errorMsgContainer.classList.remove("d-none");
+  genericElements.userInput.value = "";
+
+  if (data.status === 400) {
+    displayError.textContent =
+      "The location you entered could not be found. Please try again!";
+  } else if (data.status > 400 && data.status < 500) {
+    displayError.textContent =
+      "Sorry, we encountered an error processing your request. Please try again later.";
+  } else {
+    displayError.textContent = "Server Error: Please try again later.";
+  }
 }
 
 // Function to update the visibility of the warning element
-function updateWarningVisibility(showWarning) {
-    warningElement.style.visibility = showWarning ? 'visible' : 'hidden';
+function toggleWarning(showWarning) {
+  genericElements.locationWarning.style.visibility = showWarning
+    ? "visible"
+    : "hidden";
 }
